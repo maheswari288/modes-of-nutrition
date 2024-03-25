@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+<style>
+
+body {
+  background-image: url(https://i.pinimg.com/originals/a1/de/63/a1de6386d293361f3fe89e74b2a8ee16.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+} 
+
+
+
+
+body {
+  font-family: Copperplate, Papyrus, fantasy;
+}
+
+h1 {
+  font-family: 'Copperplate', 'Papyrus', 'fantasy';
+  font-size: 48px;
+  color: rgb(226, 105, 74);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-top: 100px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  animation: glow 2s linear infinite;
+}
+
+@keyframes glow {
+  0% { text-shadow: 2px 2px 4px rgba(248, 96, 96, 0.3); }
+  50% { text-shadow: 4px 4px 8px rgba(195, 114, 114, 0.6); }
+  100% { text-shadow: 2px 2px 4px rgba(241, 50, 50, 0.3); }
+}
+
+.flowchart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #a6443a;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(245, 236, 236, 0.1);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button:hover {
+  background-color: #f6c7c2;
+}
+
+.button:hover:before {
+  opacity: 1;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+
+
+.subflowchart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.subcategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.subcategory::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(12, 12, 12);
+}
+
+.subcategory .button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.subcategory .button:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(16, 16, 16);
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.subflowchart > .subcategory:first-child::before,
+.subflowchart > .subcategory:last-child::before {
+  display: none;
+}
+
+.flowchart .button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 10px;
+  height: 2px;
+  background-color: white;
+  transform: translateY(-50%);
+}
+
+.flowchart .button:first-child::before {
+  display: none;
+}
+
+/* Vegetable Emojis */
+body::before,
+body::after,
+body::before-left,
+body::after-left {
+  content: "🌽";
+  position: absolute;
+  font-size: calc(20px + var(--rand-size) * 10px);
+}
+
+body::before {
+  top: calc(10% * var(--rand-y));
+  left: calc(10% * var(--rand-x));
+}
+
+body::after {
+  bottom: calc(10% * var(--rand-y));
+  right: calc(10% * var(--rand-x));
+}
+
+body::before-left {
+  top: calc(10% * var(--rand-y-left));
+  right: calc(10% * var(--rand-x-left));
+}
+
+body::after-left {
+  bottom: calc(10% * var(--rand-y-left));
+  left: calc(10% * var(--rand-x-left));
+}
+
+@keyframes generate-emojis {
+  0% {
+    --rand-x: random();
+    --rand-y: random();
+    --rand-size: random();
+  }
+  50% {
+    --rand-x: random();
+    --rand-y: random();
+    --rand-size: random();
+  }
+  100% {
+    --rand-x: random();
+    --rand-y: random();
+    --rand-size: random();
+  }
+}
+
+@keyframes generate-emojis-left {
+  0% {
+    --rand-x-left: random();
+    --rand-y-left: random();
+    --rand-size: random();
+  }
+  50% {
+    --rand-x-left: random();
+    --rand-y-left: random();
+    --rand-size: random();
+  }
+  100% {
+    --rand-x-left: random();
+    --rand-y-left: random();
+    --rand-size: random();
+  }
+}
+
+body::before {
+  animation: generate-emojis 10s infinite;
+}
+
+body::after {
+  animation: generate-emojis 10s infinite;
+}
+
+body::before-left {
+  animation: generate-emojis-left 10s infinite;
+}
+
+body::after-left {
+  animation: generate-emojis-left 10s infinite;
+}
+</style>
+</head>
+<body>
+    <center>
+        <h1>MODES OF NUTRITION</h1>
+    </center>
+
+    <div class="flowchart">
+      <a href="Modes_of_Nutrition.html" class="button">Modes of Nutrition</a>
+      <div class="subflowchart">
+        <div class="subcategory">
+          <a href="Autotrophic.html" class="button">Autotrophs</a>
+          <a href="Photosynthesis.html" class="button">Photosynthesis</a>
+          <a href="Chemosynthesis.html" class="button">Chemosynthesis</a>
+        </div>
+        <div class="subcategory">
+          <a href="Heterotrophic.html" class="button">Heterotrophic</a>
+          <a href="Holozoic.html" class="button">Holozoic nutrition</a>
+          <a href="saprophytisim.html" class="button">Saprophytic</a>
+          <a href="Parasitic_Nutrition.html" class="button">Parasitism</a>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
